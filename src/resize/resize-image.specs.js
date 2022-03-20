@@ -15,11 +15,11 @@ describe('resize-image', () => {
     expect(difference).to.be.below(20, 'Generated image is below accepted similarly threshold');
   });
 
-  it('should fail with a sensible error message if imagemagick returns an error', async () => {
+  it('should fail with a sensible error message if sharp returns an error', async () => {
     try {
       await resizeImage('badinput', 'badoutput', 'badsize');
     } catch (err) {
-      expect(err.message).to.match(/failed/);
+      expect(err.message).to.include('Failed to parse size target image size');
     }
   });
 });
