@@ -1,6 +1,5 @@
 const fs = require('fs');
 const { promisify } = require('util');
-const imagemagickCli = require('imagemagick-cli');
 const getImageWidth = require('../imagemagick/get-image-width');
 
 const copyFileAsync = promisify(fs.copyFile);
@@ -32,6 +31,10 @@ async function caption(input, output, label, gravity, proportionalSize) {
     -gravity center -size ${width}x${height} \
     caption:"${label}" \
     ${input} +swap -gravity ${gravity} -composite ${output}`;
+
+  // eslint-disable-next-line global-require
+  const imagemagickCli = require('imagemagick-cli');
+
   return imagemagickCli.exec(command);
 }
 

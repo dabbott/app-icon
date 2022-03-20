@@ -3,12 +3,7 @@ const sharp = require('sharp');
 function parseSize(size) {
   const [width, height] = size.split('x').map(Number);
 
-  if (
-    typeof width !== 'number'
-    || typeof height !== 'number'
-    || Number.isNaN(width)
-    || Number.isNaN(height)
-  ) {
+  if (Number.isNaN(width) || Number.isNaN(height)) {
     throw new Error(`Failed to parse size target image size '${size}'`);
   }
 
